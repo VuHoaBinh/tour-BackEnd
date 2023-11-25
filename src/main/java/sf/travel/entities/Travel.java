@@ -35,7 +35,7 @@ public class Travel {
 
     @Enumerated(EnumType.STRING)
     @Column
-    private TravelType type;
+    private TravelType type = TravelType.TOUR;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")

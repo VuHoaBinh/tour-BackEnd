@@ -32,6 +32,7 @@ public class UserService {
         user.setName(input.getName());
         user.setEmail(input.getEmail());
         user.setPassword(input.getPassword());
+        user.setRole(input.getRole());
         return userRepo.save(user);
     }
 
@@ -76,11 +77,8 @@ public class UserService {
         Optional<User> customer = userRepo.findById(id);
         if (customer.isPresent()){
             User newCustomer = customer.get();
-            if (input.getName() != null){
-                newCustomer.setName(input.getName());
-            }
-            if (input.getEmail() != null){
-                newCustomer.setEmail(input.getEmail() );
+            if (input.getRole() != null){
+                newCustomer.setRole(input.getRole());
             }
 
             return userRepo.save(newCustomer);

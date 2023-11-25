@@ -11,7 +11,6 @@ public class CreateTravelReq {
     @NotNull
     private String name;
     private String description;
-    private String detail;
     private Integer price;
     private String image;
     @NotNull

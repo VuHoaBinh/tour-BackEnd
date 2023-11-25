@@ -25,7 +25,7 @@ public class Order {
     private Travel travel;
 
     @Column
-    private String username;
+    private String name;
 
     @Column
     private String email;
@@ -38,7 +38,7 @@ public class Order {
 
     @Enumerated(EnumType.STRING)
     @Column()
-    private Status status;
+    private Status status = Status.UNPAID;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")

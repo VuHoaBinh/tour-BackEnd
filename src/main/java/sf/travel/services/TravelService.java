@@ -36,6 +36,7 @@ public class TravelService {
         travel.setPrice(input.getPrice());
         travel.setType(input.getType());
         travel.setDomain(input.getDomain());
+        travel.setImage(input.getImage());
         return travelRepo.save(travel);
     }
 
@@ -50,8 +51,6 @@ public class TravelService {
         if (filter.getSearchText() != null) {
             spec = travelSpecifications.createLikeSpecification("description", filter.getSearchText())
                                        .or(travelSpecifications.createLikeSpecification("name",
-                                                                                        filter.getSearchText()))
-                                       .or(travelSpecifications.createLikeSpecification("detail",
                                                                                         filter.getSearchText()));
 
         }
@@ -84,6 +83,13 @@ public class TravelService {
             }
             if (input.getType() != null) {
                 newTravel.setType(input.getType());
+            }
+            if (input.getImage() != null) {
+                newTravel.setImage(input.getImage());
+            }
+
+            if (input.getDomain() != null) {
+                newTravel.setDomain(input.getDomain());
             }
 
             return travelRepo.save(newTravel);

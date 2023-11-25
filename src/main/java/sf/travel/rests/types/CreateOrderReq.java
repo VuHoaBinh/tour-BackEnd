@@ -9,10 +9,9 @@ public class CreateOrderReq {
     @NotNull
     private Long travelId;
     @NotNull
-    private String username;
+    private String name;
     @NotNull
     private String email;
     private String title;
     private String description;
-    private Status status;
 }

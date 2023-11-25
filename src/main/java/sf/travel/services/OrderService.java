@@ -17,6 +17,7 @@ import sf.travel.repositories.OrderRepository;
 import sf.travel.repositories.TravelRepository;
 import sf.travel.rests.types.*;
 
+import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @Service
@@ -30,11 +31,10 @@ public class OrderService {
         Optional<Travel> travel = travelRepo.findById(input.getTravelId());
 
         Order order = new Order();
-        order.setUsername(input.getUsername());
+        order.setName(input.getName());
         order.setEmail(input.getEmail());
         order.setTitle(input.getTitle());
         order.setDescription(input.getDescription());
-        order.setStatus(input.getStatus());
 
         if (travel.isPresent()){
             order.setTravel(travel.get());
@@ -57,11 +57,6 @@ public class OrderService {
             spec = orderSpec.createSpecification("price", filter.getPrice());
         }
 
-        if (filter.getSearchText() != null) {
-            spec = orderSpec.createLikeSpecification("description", filter.getSearchText())
-                    .or(orderSpec.createLikeSpecification("name", filter.getSearchText()));
-        }
-
         System.out.println("Conditions: " + spec);
 
         Pageable pageable = PageRequest.of(filter.getPage(), filter.getSize(), Sort.by("id").descending());
@@ -74,7 +69,18 @@ public class OrderService {
         return orderRepo.findById(id);
     }
 
-    public void delete(Long id){
-        orderRepo.deleteById(id);
+    public Order partialUpdate(Long id, UpdateOrderReq input) {
+        Optional<Order> order = orderRepo.findById(id);
+
+        if (order.isPresent()) {
+            Order newOrder = order.get();
+            if (input.getStatus() != null) {
+                newOrder.setStatus(input.getStatus());
+            }
+
+            return orderRepo.save(newOrder);
+        } else {
+            throw new ConflictError(ErrorCode.ORDER_NOT_FOUND);
+        }
     }
 }
