@@ -3,6 +3,7 @@ package sf.travel.entities;
 import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import sf.travel.enums.Role;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -27,6 +28,9 @@ public class User {
 
     @Column
     private String password;
+
+    @Column()
+    private Role role = Role.USER;
 
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
