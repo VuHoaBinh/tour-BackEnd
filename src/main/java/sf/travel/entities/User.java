@@ -5,6 +5,7 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.time.LocalDateTime;
 
 @Data
@@ -20,7 +21,8 @@ public class User {
     @Column
     private String name;
 
-    @Column
+    @Column(unique = true)
+    @Email()
     private String email;
 
     @Column

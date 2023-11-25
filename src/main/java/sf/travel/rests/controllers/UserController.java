@@ -5,10 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import sf.travel.entities.User;
-import sf.travel.rests.types.ApiResponse;
-import sf.travel.rests.types.CreateUserReq;
-import sf.travel.rests.types.UserFilter;
-import sf.travel.rests.types.UpdateUserReq;
+import sf.travel.rests.types.*;
 import sf.travel.services.UserService;
 
 import java.util.Optional;
@@ -23,6 +20,11 @@ public class UserController {
     @PostMapping("/")
     public User create(@RequestBody CreateUserReq req) {
         return userService.create(req);
+    }
+
+    @PostMapping("/login")
+    public Optional<User> login(@RequestBody LoginReq req) {
+        return userService.login(req);
     }
 
     @GetMapping("")

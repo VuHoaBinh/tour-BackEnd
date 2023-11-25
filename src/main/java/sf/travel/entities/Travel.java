@@ -28,6 +28,9 @@ public class Travel {
     private int price;
 
     @Column
+    private String image;
+
+    @Column
     private TravelDomainType domain;
 
     @Enumerated(EnumType.STRING)

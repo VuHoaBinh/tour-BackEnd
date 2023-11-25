@@ -10,4 +10,5 @@ public class UpdateTravelReq {
     private String detail;
     private TravelType type;
     private Integer price;
+    private String image;
 }

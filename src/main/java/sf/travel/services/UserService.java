@@ -14,6 +14,7 @@ import sf.travel.errors.ErrorCode;
 import sf.travel.helper.specifications.UserSpec;
 import sf.travel.repositories.UserRepository;
 import sf.travel.rests.types.CreateUserReq;
+import sf.travel.rests.types.LoginReq;
 import sf.travel.rests.types.UserFilter;
 import sf.travel.rests.types.UpdateUserReq;
 
@@ -32,6 +33,17 @@ public class UserService {
         user.setEmail(input.getEmail());
         user.setPassword(input.getPassword());
         return userRepo.save(user);
+    }
+
+    public Optional<User> login(LoginReq input) {
+        Optional<User> user = userRepo.findByEmail(input.getEmail());
+        if (user.isPresent()) {
+            User newUser = user.get();
+            if (newUser.getPassword().equals(input.getPassword())) {
+                return user;
+            }
+        }
+        throw new ConflictError(ErrorCode.USER_NOT_FOUND);
     }
 
     public Page<User> findAll(UserFilter filter){

@@ -13,6 +13,7 @@ public class CreateTravelReq {
     private String description;
     private String detail;
     private Integer price;
+    private String image;
     @NotNull
     private TravelType type;
     private TravelDomainType domain;
