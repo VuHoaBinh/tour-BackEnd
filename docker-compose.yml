@@ -1,28 +1,29 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres
+  mssql:
+    image: mcr.microsoft.com/mssql/server
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-      POSTGRES_DB: postgres
+      ACCEPT_EULA: Y
+      SA_PASSWORD: mypass1.
+      MSSQL_PID: Express
     ports:
-      - "2002:5432"
+      - "1433:1433"
     volumes:
-      - postgres-data:/var/lib/postgresql/data
+      - mssql-data:/var/opt/mssql
 
+# Uncomment and modify the following section according to your application requirements
 #  app:
 #    build: .
 #    ports:
 #      - "8080:8080"
 #    depends_on:
-#      - postgres
+#      - mssql
 #    environment:
-#      SPRING_DATASOURCE_URL: jdbc:postgresql://localhost:5432/travel
-#      SPRING_DATASOURCE_USERNAME: hoang
-#      SPRING_DATASOURCE_PASSWORD: 123456
+#      SPRING_DATASOURCE_URL: jdbc:sqlserver://mssql:1433;databaseName=travel
+#      SPRING_DATASOURCE_USERNAME: sa
+#      SPRING_DATASOURCE_PASSWORD: YourPasswordHere
 
 volumes:
-  postgres-data:
+  mssql-data:
     driver: local
