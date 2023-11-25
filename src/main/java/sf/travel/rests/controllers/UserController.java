@@ -11,6 +11,7 @@ import sf.travel.services.UserService;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/users")
 @AllArgsConstructor
 public class UserController {

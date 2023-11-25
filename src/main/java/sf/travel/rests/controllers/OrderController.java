@@ -13,6 +13,7 @@ import sf.travel.services.OrderService;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin
 @RequestMapping("/orders")
 @AllArgsConstructor
 public class OrderController {
