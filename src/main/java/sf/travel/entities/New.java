@@ -23,6 +23,9 @@ public class New {
     @Column
     private String description;
 
+    @Column
+    private String image;
+
     @CreationTimestamp
     @Column(updatable = false, name = "created_at")
     private LocalDateTime createdAt;

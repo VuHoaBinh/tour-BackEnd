@@ -30,6 +30,7 @@ public class NewService {
         New newPage = new New();
         newPage.setName(input.getName());
         newPage.setDescription(input.getDescription());
+        newPage.setImage(input.getImage());
         return newRepo.save(newPage);
     }
 
@@ -65,6 +66,9 @@ public class NewService {
             }
             if (input.getDescription() != null){
                 newUpdate.setDescription(input.getDescription() );
+            }
+            if (input.getImage() != null){
+                newUpdate.setImage(input.getImage() );
             }
 
             return newRepo.save(newUpdate);

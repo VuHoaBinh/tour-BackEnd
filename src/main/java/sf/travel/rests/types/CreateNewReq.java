@@ -6,4 +6,5 @@ import lombok.Data;
 public class CreateNewReq {
     private String name;
     private String description;
+    private String image;
 }
